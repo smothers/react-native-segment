@@ -9,6 +9,7 @@
 #import "RNSegment.h"
 #import <Analytics/SEGAnalytics.h>
 #import <Segment-GoogleAnalytics/SEGGoogleAnalyticsIntegrationFactory.h>
+#import <Segment-Mixpanel/SEGMixpanelIntegrationFactory.h>
 #import "RCTBridgeModule.h"
 
 @implementation RNSegment
@@ -19,6 +20,7 @@ RCT_EXPORT_METHOD(setupWithConfiguration:(NSString *)writeKey withDebug:(BOOL)de
 {
     SEGAnalyticsConfiguration *config = [SEGAnalyticsConfiguration configurationWithWriteKey:writeKey];
     [config use:[SEGGoogleAnalyticsIntegrationFactory instance]];
+    [config use:[SEGMixpanelIntegrationFactory instance]];
     [SEGAnalytics setupWithConfiguration:config];
     [SEGAnalytics debug:debug];
 }
